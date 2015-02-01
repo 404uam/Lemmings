@@ -7,12 +7,14 @@ public class LemmingRunner {
 
 	public static void main(String[] args) {
 		
+		Level level = new Level();
 		//Reading in the file
-		readFile();
+		readFile(level);
+		System.out.println(level.getAmountOfLemmings());
 		
 
 	}
-	public static void readFile()
+	public static void readFile(Level level)
 	{
 		File file = new File("test_level_01.txt");
 		Scanner reader = null;
@@ -23,20 +25,42 @@ public class LemmingRunner {
 		{
 			e.printStackTrace();
 		}
+		level.setMaxHeight(reader.nextInt());
+		level.setTimeLimit(reader.nextInt());
+		level.setPassLemming(reader.nextInt());
+		level.setAmountOfLemmings(reader.nextInt());
 		
-		int maxHeight = reader.nextInt();
-		int timeLimit = reader.nextInt();
-		int passLemming = reader.nextInt();
-		int amountOfLemmings = reader.nextInt();
-		
-		for (int c = 0; c < amountOfLemmings; c++)
+		for (int c = 0; c < level.getAmountOfLemmings(); c++)
 		{
 			Lemming temp = new Lemming();
 			temp.setX(reader.nextInt());
 			temp.setY(reader.nextInt());
 			temp.setTime(reader.nextInt());
 		}
+		level.setWidth(reader.nextInt());
+		level.setHeight(reader.nextInt());
 		
+		char[][] tempLevel = new char[level.getHeight()][level.getWidth()];
+		
+		for (int c = 0; c < level.getHeight(); c++)
+		{
+			String tempLine = reader.next();
+			for(int i = 0; i < level.getWidth(); i++)
+			{
+				tempLevel[c][i] = tempLine.charAt(i);
+			}
+		}
+		level.setLevel(tempLevel);
+		level.setExitX(reader.nextInt());
+		level.setExitY(reader.nextInt());
+		reader.nextInt();
+		reader.nextInt();
+		reader.nextInt();
+		level.setBlocker(reader.nextInt());
+		reader.nextInt();
+		level.setBasher(reader.nextInt());
+		level.setDigger(reader.nextInt());
+		reader.nextInt();
 		
 	}
 
