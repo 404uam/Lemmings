@@ -24,6 +24,7 @@ public class SolutionChecker {
 				if(time == temp.getTime())
 				{
 					temp.spawn();
+					temp.setOccupyingBlock(level.getLevel()[temp.getCurrentX()][temp.getCurrentY()]);
 					level.getLevel()[temp.getCurrentX()][temp.getCurrentY()] = ' ';
 				}
 				
@@ -31,8 +32,30 @@ public class SolutionChecker {
 				{
 					if(inAir(temp))
 					{
-						level.getLevel()[temp.getCurrentX()][temp.getCurrentY()] = 'a';
+						level.getLevel()[temp.getCurrentX()][temp.getCurrentY()] = temp.getOccupyingBlock();
+
 						temp.setX(temp.getCurrentX()+1);
+						temp.setOccupyingBlock(level.getLevel()[temp.getCurrentX()][temp.getCurrentY()]);
+						level.getLevel()[temp.getCurrentX()][temp.getCurrentY()] = ' ';
+						
+					}
+					else if(inExit(temp))
+					{
+						temp.setAliveStatus(false);
+						level.getLevel()[temp.getCurrentX()][temp.getCurrentY()] = temp.getOccupyingBlock();
+					}
+					else if(canMove(temp))
+					{
+						level.getLevel()[temp.getCurrentX()][temp.getCurrentY()] = temp.getOccupyingBlock();
+						if(temp.facingRight()){
+							temp.setY(temp.getCurrentY()+1);
+						}
+						else
+						{
+							temp.setY(temp.getCurrentY()-1);
+						}
+						
+						temp.setOccupyingBlock(level.getLevel()[temp.getCurrentX()][temp.getCurrentY()]);
 						level.getLevel()[temp.getCurrentX()][temp.getCurrentY()] = ' ';
 					}
 				}
@@ -54,12 +77,68 @@ public class SolutionChecker {
 	public boolean inAir(Lemming lemming)
 	{ 
 		boolean result = false;
+		try {
+			if (level.getLevel()[lemming.getCurrentX() + 1][lemming.getCurrentY()] == 'a') {
+				result = true;
+			}
+		} catch (Exception e) {
+			lemming.setAliveStatus(false);
+			level.getLevel()[lemming.getCurrentX()][lemming.getCurrentY()] = lemming.getOccupyingBlock();
+		}
+			
+		return result;
+	}
+	
+	public boolean canMove(Lemming lemming)
+	{
+		boolean result = false;
+		try{
+			if (lemming.facingRight()){
+				if(level.getLevel()[lemming.getCurrentX()][lemming.getCurrentY() + 1] =='a'
+						|| level.getLevel()[lemming.getCurrentX()][lemming.getCurrentY() + 1] ==' ')
+				{
+					result = true;
+				}
+				else if(level.getLevel()[lemming.getCurrentX()][lemming.getCurrentY() + 1] == 'd')
+				{
+					lemming.turnAround();
+				}
+				else if(level.getLevel()[lemming.getCurrentX()][lemming.getCurrentY() + 1] == 'r')
+				{
+					lemming.turnAround();
+				}
+			}
+			else{
+				if(level.getLevel()[lemming.getCurrentX()][lemming.getCurrentY() - 1] =='a'
+						|| level.getLevel()[lemming.getCurrentX()][lemming.getCurrentY() - 1] ==' ')
+				{
+					result = true;
+				}
+				else if(level.getLevel()[lemming.getCurrentX()][lemming.getCurrentY() - 1] == 'd')
+				{
+					lemming.turnAround();
+				}
+				else if(level.getLevel()[lemming.getCurrentX()][lemming.getCurrentY() - 1] == 'r')
+				{
+					lemming.turnAround();
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			lemming.turnAround();
+		}
+		return result;
+	}
+	
+	public boolean inExit (Lemming lemming)
+	{
+		boolean result = false;
 		
-		if(level.getLevel()[lemming.getCurrentX() + 1][lemming.getCurrentY()] == 'a')
+		if(level.getExitX() == lemming.getCurrentY() && level.getExitY() == lemming.getCurrentX())
 		{
 			result = true;
 		}
-		
 		
 		return result;
 	}

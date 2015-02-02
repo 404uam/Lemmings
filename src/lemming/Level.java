@@ -93,7 +93,7 @@ public class Level {
 	}
 
 	public int getExitY() {
-		return exitY;
+		return (height - exitY)-1;
 	}
 
 	public void setExitY(int exitY) {

@@ -4,10 +4,11 @@ public class Lemming {
 	private int spawnX;
 	private int spawnY;
 	private int spawnTime;
-	private int currentX;
+	 private int currentX;
 	private int currentY;
 	private boolean alive = false;
-	
+	private char occupyingBlock;
+	private boolean facingRight = true;
 		
 	public Lemming()
 	{
@@ -65,6 +66,26 @@ public class Lemming {
 	public void setAliveStatus(boolean status)
 	{
 		alive = status;
+	}
+	
+	public void setOccupyingBlock(char block)
+	{
+		this.occupyingBlock = block;
+	}
+	
+	public char getOccupyingBlock()
+	{
+		return occupyingBlock;
+	}
+	
+	public void turnAround()
+	{
+		facingRight = !facingRight;
+	}
+	
+	public boolean facingRight()
+	{
+		return facingRight;
 	}
 
 }
