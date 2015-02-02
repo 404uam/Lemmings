@@ -1,5 +1,7 @@
 package lemming;
 
+import java.util.*;
+
 public class Level {
 	
 	private int maxHeight;
@@ -15,6 +17,7 @@ public class Level {
 	private int basher;
 	private int digger;
 	
+	private ArrayList<Lemming> lemmings = new ArrayList<Lemming>();
 	
 	public Level()
 	{
@@ -119,6 +122,11 @@ public class Level {
 
 	public void setDigger(int digger) {
 		this.digger = digger;
+	}
+	
+	public ArrayList<Lemming> getLemmings()
+	{
+		return lemmings;
 	}
 	
 	

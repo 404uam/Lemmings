@@ -8,9 +8,11 @@ public class LemmingRunner {
 	public static void main(String[] args) {
 		
 		Level level = new Level();
+		
 		//Reading in the file
 		readFile(level);
-		System.out.println(level.getAmountOfLemmings());
+		SolutionChecker checker = new SolutionChecker(level);
+		checker.run();
 		
 
 	}
@@ -33,9 +35,10 @@ public class LemmingRunner {
 		for (int c = 0; c < level.getAmountOfLemmings(); c++)
 		{
 			Lemming temp = new Lemming();
-			temp.setX(reader.nextInt());
-			temp.setY(reader.nextInt());
+			temp.setSpawnX(reader.nextInt());
+			temp.setSpawnY(reader.nextInt());
 			temp.setTime(reader.nextInt());
+			level.getLemmings().add(temp);
 		}
 		level.setWidth(reader.nextInt());
 		level.setHeight(reader.nextInt());
