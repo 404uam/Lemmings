@@ -1,23 +1,28 @@
 package lemming;
 
 public class Lemming {
-
+	private int spawnX;
+	private int spawnY;
+	private int spawnTime;
+	private int currentX;
+	private int currentY;
+	
+		
 	public Lemming()
 	{
 		
 	}
 	
-	public void setX(int nextInt) {
-		
+	public void setSpawnX(int x) {
+		this.spawnX = x;
 	}
 
-	public void setY(int nextInt) {
-		// TODO Auto-generated method stub
+	public void setSpawnY(int y) {
+		this.spawnY = y;
 		
 	}
 
 	public void setTime(int nextInt) {
-		// TODO Auto-generated method stub
 		
 	}
 

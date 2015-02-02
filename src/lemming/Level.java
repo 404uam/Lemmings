@@ -15,7 +15,6 @@ public class Level {
 	private int basher;
 	private int digger;
 	
-	private int miner;
 	
 	public Level()
 	{
