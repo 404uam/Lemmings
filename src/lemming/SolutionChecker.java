@@ -15,7 +15,7 @@ public class SolutionChecker {
 	
 	public void run()
 	{
-		while(time < level.getTimeLimit())
+		while(time < level.getTimeLimit() && level.getLemmingsLeft() > 0)
 		{
 			for(int c = 0; c < level.getAmountOfLemmings(); c++)
 			{
@@ -44,9 +44,15 @@ public class SolutionChecker {
 						temp.setAliveStatus(false);
 						level.getLevel()[temp.getCurrentX()][temp.getCurrentY()] = temp.getOccupyingBlock();
 					}
+					/*
+					 * NOTE:
+					 * When displaying, if 2 lemmings pass each other there will be a frame where 1 lemming is not visible.
+					 * But he is still there and working properly.
+					 */
 					else if(canMove(temp))
 					{
-						level.getLevel()[temp.getCurrentX()][temp.getCurrentY()] = temp.getOccupyingBlock();
+						level.getLevel()[temp.getCurrentX()][temp.getCurrentY()] = 'a';
+						
 						if(temp.facingRight()){
 							temp.setY(temp.getCurrentY()+1);
 						}
@@ -54,7 +60,6 @@ public class SolutionChecker {
 						{
 							temp.setY(temp.getCurrentY()-1);
 						}
-						
 						temp.setOccupyingBlock(level.getLevel()[temp.getCurrentX()][temp.getCurrentY()]);
 						level.getLevel()[temp.getCurrentX()][temp.getCurrentY()] = ' ';
 					}
@@ -69,7 +74,7 @@ public class SolutionChecker {
 				}
 				System.out.print("\n");
 			}
-			System.out.println("Press a button");
+			System.out.println("Press Enter");
 			keyboard.nextLine();
 			time++;
 		}
@@ -138,6 +143,7 @@ public class SolutionChecker {
 		if(level.getExitX() == lemming.getCurrentY() && level.getExitY() == lemming.getCurrentX())
 		{
 			result = true;
+			level.decrementLemmingsLeft();
 		}
 		
 		return result;

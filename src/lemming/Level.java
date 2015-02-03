@@ -16,6 +16,7 @@ public class Level {
 	private int blocker;
 	private int basher;
 	private int digger;
+	private int lemmingsLeft;
 	
 	private ArrayList<Lemming> lemmings = new ArrayList<Lemming>();
 	
@@ -54,6 +55,7 @@ public class Level {
 
 	public void setAmountOfLemmings(int amountOfLemmings) {
 		this.amountOfLemmings = amountOfLemmings;
+		lemmingsLeft = amountOfLemmings;
 	}
 	
 	public void setWidth(int width)
@@ -127,6 +129,16 @@ public class Level {
 	public ArrayList<Lemming> getLemmings()
 	{
 		return lemmings;
+	}
+	
+	public int getLemmingsLeft()
+	{
+		return lemmingsLeft;
+	}
+	
+	public void decrementLemmingsLeft()
+	{
+		lemmingsLeft--;
 	}
 	
 	
