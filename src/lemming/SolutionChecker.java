@@ -122,11 +122,7 @@ public class SolutionChecker {
 				{
 					result = true;
 				}
-				else if(level.getLevel()[lemming.getCurrentX()][lemming.getCurrentY() - 1] == 'd')
-				{
-					lemming.turnAround();
-				}
-				else if(level.getLevel()[lemming.getCurrentX()][lemming.getCurrentY() - 1] == 'r')
+				else
 				{
 					lemming.turnAround();
 				}
@@ -146,7 +142,6 @@ public class SolutionChecker {
 		if(level.getExitX() == lemming.getCurrentY() && level.getExitY() == lemming.getCurrentX())
 		{
 			result = true;
-			level.decrementLemmingsLeft();
 		}
 		
 		return result;

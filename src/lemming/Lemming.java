@@ -109,4 +109,18 @@ public class Lemming {
 		return digger;
 	}
 	
+	public void setBasher(boolean basher)
+	{
+		this.basher = basher;
+	}
+	
+	public void setBlocker(boolean blocker)
+	{
+		this.blocker = blocker;
+	}
+	
+	public void setDigger(boolean digger)
+	{
+		this.digger = digger;
+	}
 }
