@@ -10,14 +10,15 @@ public class Lemming {
 	private int spawnTime;
 	private int currentX;
 	private int currentY;
-	private int falling = 0;
 	private boolean alive = false;
 	private char occupyingBlock;
 	private boolean facingRight = true;
-		
+	public boolean basher = false;
+	public boolean blocker = false;
+	public boolean digger = false;
+	
 	public Lemming()
-	{
-		
+	{	
 	}
 	
 	public void spawn()
@@ -92,14 +93,20 @@ public class Lemming {
 	{
 		return facingRight;
 	}
-
-	public int getFalling()
+	
+	public boolean isBasher()
 	{
-		return falling;
+		return basher;
 	}
 	
-	public void incrementFalling()
+	public boolean isBlocker()
 	{
-		falling++;
+		return blocker;
 	}
+	
+	public boolean isDigger()
+	{
+		return digger;
+	}
+	
 }

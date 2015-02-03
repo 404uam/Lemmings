@@ -41,12 +41,6 @@ public class SolutionChecker {
 						temp.setOccupyingBlock(level.getLevel()[temp.getCurrentX()][temp.getCurrentY()]);
 						level.getLevel()[temp.getCurrentX()][temp.getCurrentY()] = ' ';
 					}
-					else if(temp.getFalling() >= level.getMaxHeight())
-					{
-						temp.setAliveStatus(false);
-						level.decrementLemmingsLeft();
-						level.getLevel()[temp.getCurrentX()][temp.getCurrentY()] = temp.getOccupyingBlock();
-					}
 					else if(inExit(temp))
 					{
 						temp.setAliveStatus(false);
@@ -94,7 +88,6 @@ public class SolutionChecker {
 		try {
 			if (level.getLevel()[lemming.getCurrentX() + 1][lemming.getCurrentY()] == 'a') {
 				result = true;
-				lemming.incrementFalling();
 				}
 		} catch (Exception e) {
 			lemming.setAliveStatus(false);
