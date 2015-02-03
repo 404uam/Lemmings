@@ -8,8 +8,9 @@ public class Lemming {
 	private int spawnX;
 	private int spawnY;
 	private int spawnTime;
-	 private int currentX;
+	private int currentX;
 	private int currentY;
+	private int falling = 0;
 	private boolean alive = false;
 	private char occupyingBlock;
 	private boolean facingRight = true;
@@ -92,4 +93,13 @@ public class Lemming {
 		return facingRight;
 	}
 
+	public int getFalling()
+	{
+		return falling;
+	}
+	
+	public void incrementFalling()
+	{
+		falling++;
+	}
 }
