@@ -1,3 +1,7 @@
+/**
+ * 
+ * @author Louis Mau
+ */
 package lemming;
 
 public class Lemming {
