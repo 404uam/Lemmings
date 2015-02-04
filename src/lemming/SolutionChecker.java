@@ -47,6 +47,12 @@ public class SolutionChecker {
 						level.decrementLemmingsLeft();
 						level.getLevel()[temp.getCurrentX()][temp.getCurrentY()] = temp.getOccupyingBlock();
 					}
+					else if(diggerCheck(temp))
+					{
+						level.getLevel()[temp.getCurrentX()][temp.getCurrentY()] = 'a';
+						temp.setX(temp.getCurrentX()+1);
+						level.getLevel()[temp.getCurrentX()][temp.getCurrentY()] = ' ';
+					}
 					/*
 					 * NOTE:
 					 * When displaying, if 2 lemmings pass each other there will be a frame where 1 lemming is not visible.
@@ -89,7 +95,7 @@ public class SolutionChecker {
 			if (level.getLevel()[lemming.getCurrentX() + 1][lemming.getCurrentY()] == 'a') {
 				result = true;
 				}
-		} catch (Exception e) {
+		} catch (ArrayIndexOutOfBoundsException e) {
 			lemming.setAliveStatus(false);
 			level.getLevel()[lemming.getCurrentX()][lemming.getCurrentY()] = lemming.getOccupyingBlock();
 		}
@@ -107,13 +113,18 @@ public class SolutionChecker {
 				{
 					result = true;
 				}
-				else if(level.getLevel()[lemming.getCurrentX()][lemming.getCurrentY() + 1] == 'd')
+				else
 				{
-					lemming.turnAround();
-				}
-				else if(level.getLevel()[lemming.getCurrentX()][lemming.getCurrentY() + 1] == 'r')
-				{
-					lemming.turnAround();
+					if(level.getLevel()[lemming.getCurrentX()][lemming.getCurrentY() + 1] == 'd' && lemming.isBasher()){
+						result = true;
+					}
+					else if (lemming.isBasher())
+					{
+						lemming.setBasher(false);
+					}
+					else{
+						lemming.turnAround();
+					}
 				}
 			}
 			else{
@@ -124,11 +135,16 @@ public class SolutionChecker {
 				}
 				else
 				{
-					lemming.turnAround();
+					if(level.getLevel()[lemming.getCurrentX()][lemming.getCurrentY() - 1] == 'd' && lemming.isBasher()){
+						result = true;
+					}
+					else{
+						lemming.turnAround();
+					}
 				}
 			}
 		}
-		catch (Exception e)
+		catch (ArrayIndexOutOfBoundsException e)
 		{
 			lemming.turnAround();
 		}
@@ -142,6 +158,22 @@ public class SolutionChecker {
 		if(level.getExitX() == lemming.getCurrentY() && level.getExitY() == lemming.getCurrentX())
 		{
 			result = true;
+		}
+		
+		return result;
+	}
+	
+	public boolean diggerCheck (Lemming lemming)
+	{
+		boolean result = false;
+		
+		if(lemming.isDigger() && level.getLevel()[lemming.getCurrentX() + 1][lemming.getCurrentY()] == 'd')
+		{
+			result = true;
+		}
+		else if(lemming.isDigger())
+		{
+			lemming.setDigger(false);
 		}
 		
 		return result;

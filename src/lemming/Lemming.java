@@ -13,9 +13,9 @@ public class Lemming {
 	private boolean alive = false;
 	private char occupyingBlock;
 	private boolean facingRight = true;
-	public boolean basher = false;
-	public boolean blocker = false;
-	public boolean digger = false;
+	private boolean basher = false;
+	private boolean blocker = false;
+	private boolean digger = false;
 	
 	public Lemming()
 	{	
