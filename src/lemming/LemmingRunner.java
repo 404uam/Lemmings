@@ -1,4 +1,6 @@
 /**
+ * LemmingRunner.java
+ * Main runner class for the lemming solver
  * 
  * @author Louis Mau
  */
@@ -14,15 +16,15 @@ public class LemmingRunner {
 		Level level = new Level();
 		
 		//Reading in the file
-		readFile(level);
+		readFile(level,args);
 		SolutionChecker checker = new SolutionChecker(level);
 		checker.run();
 		
 
 	}
-	public static void readFile(Level level)
+	public static void readFile(Level level,String[] args)
 	{
-		File file = new File("test_level_01.txt");
+		File file = new File(args[0]);
 		Scanner reader = null;
 		try{
 			reader = new Scanner(file);

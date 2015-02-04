@@ -7,7 +7,7 @@
 aaaaaaaaaa
 aaaaaaaaaa
 aaaaaaaaaa
-aaaaaaaaaa
+aaaaaadaaa
 dddddddddd
 8 1
-0 0 0 0 0 0 0 0
+0 0 0 0 0 1 1 0

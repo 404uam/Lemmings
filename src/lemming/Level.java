@@ -1,5 +1,7 @@
 /**
+ * Level.java
  * 
+ * Container class for the level information
  * @author Louis Mau
  */
 package lemming;
@@ -145,5 +147,24 @@ public class Level {
 		lemmingsLeft--;
 	}
 	
+	public void decrementPassLemmings()
+	{
+		passLemming--;
+	}
+	
+	public void decrementBlocker()
+	{
+		blocker--;
+	}
+	
+	public void decrementBasher()
+	{
+		basher--;
+	}
+	
+	public void decrementDigger()
+	{
+		digger--;
+	}
 	
 }
