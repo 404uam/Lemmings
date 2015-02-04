@@ -1,5 +1,7 @@
 /**
+ * Lemming.java
  * 
+ * Container class for each lemming.
  * @author Louis Mau
  */
 package lemming;
