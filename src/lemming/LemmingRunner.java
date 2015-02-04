@@ -47,14 +47,14 @@ public class LemmingRunner {
 		level.setWidth(reader.nextInt());
 		level.setHeight(reader.nextInt());
 		
-		char[][] tempLevel = new char[level.getHeight()][level.getWidth()];
+		char[][] tempLevel = new char[level.getWidth()][level.getHeight()];
 		
 		for (int c = 0; c < level.getHeight(); c++)
 		{
 			String tempLine = reader.next();
 			for(int i = 0; i < level.getWidth(); i++)
 			{
-				tempLevel[c][i] = tempLine.charAt(i);
+				tempLevel[i][c] = tempLine.charAt(i);
 			}
 		}
 		level.setLevel(tempLevel);
