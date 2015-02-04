@@ -29,7 +29,7 @@ public class SolutionChecker {
 				{
 					temp.spawn();
 					temp.setOccupyingBlock(level.getLevel()[temp.getCurrentX()][temp.getCurrentY()]);
-					level.getLevel()[temp.getCurrentX()][level.getHeight()-1-temp.getCurrentY()] = ' ';
+					level.getLevel()[temp.getCurrentX()][temp.getCurrentY()] = ' ';
 				}
 				
 				else if(temp.isAlive())			
@@ -79,7 +79,7 @@ public class SolutionChecker {
 			{
 				for(int j = 0; j < level.getWidth(); j++)
 				{
-					System.out.print(level.getLevel()[j][i]);
+					System.out.print(level.getLevel()[i][j]);
 				}
 				System.out.print("\n");
 			}
